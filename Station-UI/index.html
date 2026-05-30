@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>STAROV-1 Arayüzü</title>
+  
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://localhost:3000; img-src 'self' http://localhost:3000; script-src 'self'; style-src 'self' 'unsafe-inline';">
+  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div id="main_layout">
+
+    <button id="fullscreenBtn">Tam Ekran</button>
+    
+    <div id="camera_container">
+      <img src="http://localhost:3000/stream" alt="Camera Stream">
+    </div>
+
+    <div id="info_panel">
+
+      <div id="sensor_section">
+        <h2>Sensör Verileri</h2>
+
+        <div class="battery-wrapper">
+          <span class="battery-label">Batarya Durumu:</span>
+          <div class="battery">
+            <div class="battery-level" id="battery_status" style="width: 76%;">76%</div>
+          </div>
+        </div>
+
+        <div class="sensor-bar-wrapper">
+          <span class="sensor-label">Basınç (Derinlik):</span>
+          <div class="sensor-bar">
+            <div class="sensor-bar-level" id="pressure_value" style="width: 42%;">8.3 m</div>
+          </div>
+        </div>
+
+        <div class="sensor-bar-wrapper">
+          <span class="sensor-label">Nem:</span>
+          <div class="sensor-bar">
+            <div class="sensor-bar-level" id="humidity_value" style="width: 58%;">58%</div>
+          </div>
+        </div>
+
+        <div class="sensor-bar-wrapper">
+          <span class="sensor-label">Hız:</span>
+          <div class="sensor-bar">
+            <div class="sensor-bar-level" id="velocity_value" style="width: 33%;">1.2 m/s</div>
+          </div>
+        </div>
+
+        <div class="sensor-bar-wrapper">
+          <span class="sensor-label">İvme X:</span>
+          <div class="sensor-bar">
+            <div class="sensor-bar-level" id="accel_x_value">0.00 m/s²</div>
+          </div>
+        </div>
+        <div class="sensor-bar-wrapper">
+          <span class="sensor-label">İvme Y:</span>
+          <div class="sensor-bar">
+            <div class="sensor-bar-level" id="accel_y_value">0.00 m/s²</div>
+          </div>
+        </div>
+        <div class="sensor-bar-wrapper">
+          <span class="sensor-label">İvme Z:</span>
+          <div class="sensor-bar">
+            <div class="sensor-bar-level" id="accel_z_value">0.00 m/s²</div>
+          </div>
+        </div>
+
+        <div class="sensor-bar-wrapper">
+          <span class="sensor-label">Yönelme (Yaw):</span>
+          <div class="sensor-bar">
+            <div class="sensor-bar-level" id="yaw_value" style="width: 67%;">121°</div>
+          </div>
+        </div>
+
+        <div class="sensor-bar-wrapper">
+          <span class="sensor-label">Yunuslama (Pitch):</span>
+          <div class="sensor-bar">
+            <div class="sensor-bar-level" id="pitch_value" style="width: 48%;">-12°</div>
+          </div>
+        </div>
+
+        <div class="sensor-bar-wrapper">
+          <span class="sensor-label">Yuvarlanma (Roll):</span>
+          <div class="sensor-bar">
+            <div class="sensor-bar-level" id="roll_value" style="width: 36%;">8°</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="datetime_section" class="datetime_section">
+        <h2>Tarih - Saat</h2>
+        <p>Tarih: <span id="current_date">01/05/2025</span></p>
+        <p>Saat: <span id="current_time">14:23:45</span></p>
+        <p>Kayıt Süresi: <span id="record_duration">00:12:37</span></p>
+        
+        <div class="record-controls">
+          <button id="record_start_btn" class="record-btn start">Kayıt Başlat</button>
+          <button id="record_stop_btn" class="record-btn stop" disabled>Kayıt Durdur</button>
+        </div>
+
+        <div id="location_section">
+          <h2>Lokalizasyon</h2>
+          <p>----</p>
+        </div>
+
+        <div id="logo_section">
+          <img src="logo.png" alt="STAROV-1 Logo" id="logo_img">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="gamepad_container">
+
+    <div id="topbar_div" class="main_container">
+      <form id="ip_form">
+        <br>
+        <label for="ip_input">IP:</label>
+        <input id="ip_input" pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$" placeholder="111.222.333.444" required>
+        <button id="ip_connect" type="submit">Connect</button>
+        <button id="ip_disconnect" type="button">Disconnect</button>
+      </form>
+      
+      <div id="dev-options">
+        <h3>Developer Options</h3>
+        <div class="dev-controls">
+          <label>
+            <input type="checkbox" id="show-raw-data" checked> 
+            Gamepad Raw Data Göster
+          </label>
+          <label>
+            <input type="checkbox" id="log-to-console"> 
+            Konsola Log Gönder
+          </label>
+        </div>
+      </div>
+    </div>
+    
+    <div id="gamepad_div" class="main_container">
+      <div id="gamepad_status">Gamepad: Sinyal Bekleniyor</div>
+      
+      <div class="stick" id="left_stick">
+        <h3>Sol Joystick</h3>
+        <div class="joystick-container">
+          <div class="joystick-visual" id="left-joystick-visual">
+            <div class="joystick-dot" id="left-joystick-dot"></div>
+          </div>
+        </div>
+        <div class="trigger-container">
+          <div class="trigger-label">LT</div>
+          <div class="trigger-bar-container">
+            <div class="trigger-bar" id="left-trigger-bar"></div>
+          </div>
+          <div class="trigger-value"><span id="left-trigger-value">0</span>%</div>
+        </div>
+        <div class="axis-value">X: <span id="left-x-value">0</span>, Y: <span id="left-y-value">0</span></div>
+      </div>
+      
+      <div class="button-panel">
+        <div class="button-container">
+          <div class="button-row">
+            <div class="placeholder-space"></div>
+            <button class="y_btn gamepadbtn">Y</button>
+            <div class="placeholder-space"></div>
+          </div>
+          <div class="button-row">
+            <button class="x_btn gamepadbtn">X</button>
+            <div class="placeholder-space"></div>
+            <button class="b_btn gamepadbtn">B</button>
+          </div>
+          <div class="button-row">
+            <div class="placeholder-space"></div>
+            <button class="a_btn gamepadbtn">A</button>
+            <div class="placeholder-space"></div>
+          </div>
+        </div>
+        <div class="button-labels">
+          <div>Gamepad butonları basıldığında vurgulanır</div>
+        </div>
+      </div>
+      
+      <div id="gamepad-info">
+        <h3>Gamepad Bilgileri</h3>
+        <div id="gamepad-buttons-info">
+          <div>Gamepad bağlı değil</div>
+        </div>
+      </div>
+      
+      <div class="dpad-panel">
+        <h3>Yön Tuşları (D-Pad)</h3>
+        <div class="dpad-container">
+          <div class="dpad-row">
+            <div class="placeholder-space"></div>
+            <button class="dpad-btn up-btn" id="dpad-up">▲</button>
+            <div class="placeholder-space"></div>
+          </div>
+          <div class="dpad-row">
+            <button class="dpad-btn left-btn" id="dpad-left">◄</button>
+            <div class="dpad-center"></div>
+            <button class="dpad-btn right-btn" id="dpad-right">►</button>
+          </div>
+          <div class="dpad-row">
+            <div class="placeholder-space"></div>
+            <button class="dpad-btn down-btn" id="dpad-down">▼</button>
+            <div class="placeholder-space"></div>
+          </div>
+        </div>
+        <div class="dpad-labels">
+          <div>Yukarı: 12 | Aşağı: 13 | Sol: 14 | Sağ: 15</div>
+        </div>
+      </div>
+      
+      <div class="stick" id="right_stick">
+        <h3>Sağ Joystick</h3>
+        <div class="joystick-container">
+          <div class="joystick-visual" id="right-joystick-visual">
+            <div class="joystick-dot" id="right-joystick-dot"></div>
+          </div>
+        </div>
+        <div class="trigger-container">
+          <div class="trigger-label">RT</div>
+          <div class="trigger-bar-container">
+            <div class="trigger-bar" id="right-trigger-bar"></div>
+          </div>
+          <div class="trigger-value"><span id="right-trigger-value">0</span>%</div>
+        </div>
+        <div class="axis-value">X: <span id="right-x-value">0</span>, Y: <span id="right-y-value">0</span></div>
+      </div>
+    </div>
+    
+    <div id="raw-data-container" class="main_container">
+      <h3>Gamepad Raw Data</h3>
+      <div id="raw-data-display">
+        <pre id="raw-data-content">Gamepad bağlı değil</pre>
+      </div>
+    </div>
+    
+    <script src="renderer.js" defer></script>
+  </div>
+
+</body>
+</html>

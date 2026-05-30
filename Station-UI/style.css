@@ -1,0 +1,540 @@
+/**
+ * STYLE.CSS
+ * Main stylesheet for the STAROV-1 UI.
+ */
+
+/* ==========================================
+   1. BASE & GLOBALS
+   ========================================== */
+
+body, html {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Roboto', system-ui, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    user-select: none;
+    white-space: nowrap;
+}
+
+h2, h3 {
+    color: #ffffff;
+}
+
+button {
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+
+/* ==========================================
+   2. MAIN LAYOUT & CAMERA
+   ========================================== */
+
+#main_layout {
+    position: relative;
+    width: 100%;
+    height: 720px;
+    margin: 0 auto;
+}
+
+#camera_container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    background-color: #1f1f1f;
+    overflow: hidden;
+    border: 2px solid #333;
+}
+
+#camera_container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* ==========================================
+   3. TELEMETRY PANEL (RIGHT SIDEBAR)
+   ========================================== */
+
+#info_panel {
+    position: absolute;
+    top: 0;
+    left: 1280px;
+    width: calc(100vw - 1280px);
+    height: 100vh;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-sizing: border-box;
+}
+
+#sensor_section, 
+#datetime_section, 
+#location_section {
+    border-radius: 8px;
+    padding: 15px;
+    box-sizing: border-box;
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    width: 100%;
+}
+
+#sensor_section {
+    height: auto;
+    text-align: left;
+    overflow-y: auto;
+    flex: 0 0 auto;
+}
+
+#datetime_section {
+    height: 200px;
+    text-align: center;
+    flex: 0 0 auto;
+}
+
+#datetime_section p {
+    display: inline-block;
+    margin-right: 20px;
+    vertical-align: middle;
+}
+
+#datetime_section h2 {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 18px;
+    position: static;
+}
+
+#location_section {
+    height: 250px;
+    margin-top: 50px;
+}
+
+/* Record Controls */
+.record-controls {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.record-btn {
+    flex: 1 1 120px;
+    min-width: 120px;
+    max-width: 200px;
+    padding: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    box-sizing: border-box;
+}
+
+.record-btn.start {
+    background: linear-gradient(90deg, #43a047, #66bb6a);
+    color: #fff;
+}
+
+.record-btn.stop {
+    background: linear-gradient(90deg, #c62828, #e53935);
+    color: #fff;
+}
+
+.record-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(0.5);
+}
+
+/* Branding / Logo */
+#logo_section {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#logo_img {
+    height: 160px;
+    object-fit: contain;
+    margin-top: 0px;
+    filter: invert(1) drop-shadow(0 0 4px #fff);
+}
+
+
+/* ==========================================
+   4. SENSOR UI COMPONENTS (BATTERY & BARS)
+   ========================================== */
+
+.battery-wrapper, 
+.sensor-bar-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.battery-label, 
+.sensor-label {
+    font-weight: bold;
+    font-size: 15px;
+    min-width: 140px;
+}
+
+.battery, 
+.sensor-bar {
+    position: relative;
+    width: 150px;
+    height: 24px;
+    border: 2px solid #8bc34a;
+    border-radius: 6px;
+    background-color: #232323;
+    overflow: hidden;
+}
+
+.battery::after {
+    display: none;
+}
+
+.battery-level, 
+.sensor-bar-level {
+    height: 100%;
+    background: linear-gradient(90deg, #2196f3, #00bcd4);
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: right;
+    padding-right: 5px;
+    border-radius: 4px 0 0 4px;
+    animation: sensor-bar-pulse 1.5s ease-in-out infinite;
+    transition: width 0.4s ease;
+}
+
+@keyframes sensor-bar-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+
+/* ==========================================
+   5. GAMEPAD INTERFACE
+   ========================================== */
+
+#gamepad_container {
+    position: absolute;
+    top: 720px;
+    left: 0;
+    width: 1280px;
+    height: calc(100vh - 724px);
+    background-color: #181818;
+    color: #fff;
+    overflow-y: auto;
+    border: 2px solid #333;
+}
+
+/* Header & Connection Bar */
+#header_div {
+    width: 100%;
+    height: 1.2em;
+    background-color: #212529;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+#topbar_div {
+    display: none;
+    grid-template-columns: 1fr 1fr auto;
+    align-items: center;
+    padding: 10px;
+    background-color: #2c2c2c;
+    border-bottom: 1px solid #444;
+}
+
+#ip_form {
+    grid-column: -1;
+}
+
+#ip_input, #port_input {
+    width: 15ch;
+    padding: 4px 8px;
+    background-color: #333;
+    border: 1px solid #555;
+    color: #fff;
+}
+
+#ip_form button {
+    margin-left: 5px;
+}
+
+/* Developer Options */
+#dev-options {
+    grid-column: 1;
+    padding: 10px;
+    background-color: #242424;
+    border-radius: 5px;
+    border: 1px solid #333;
+}
+
+#dev-options h3 {
+    margin-top: 0;
+    font-size: 16px;
+}
+
+.dev-controls label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Gamepad Grid & Status */
+#gamepad_div {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto 1fr auto;
+    gap: 10px;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+#gamepad_status {
+    grid-column: 1 / -1;
+    font-weight: bold;
+}
+
+#gamepad-info {
+    padding: 15px;
+    background-color: #1e1e1e;
+    border-radius: 5px;
+    border: 1px solid #333;
+}
+
+/* Action Buttons (A, B, X, Y) */
+.gamepadbtn {
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    border: 2px solid #555;
+    background-color: #333;
+    color: #eee;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.gamepadbtn.active {
+    background-color: #ff5722;
+    color: #fff;
+    transform: scale(0.9);
+    box-shadow: 0 0 10px rgba(255, 87, 34, 0.7);
+}
+
+.a_btn { background-color: #4CAF50; color: white; }
+.b_btn { background-color: #F44336; color: white; }
+.x_btn { background-color: #2196F3; color: white; }
+.y_btn { background-color: #FFEB3B; color: black; }
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.button-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.placeholder-space {
+    width: 3em;
+    height: 3em;
+}
+
+.button-labels, 
+.dpad-labels {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.button-indicator {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #444;
+    display: inline-block;
+    text-align: center;
+    line-height: 25px;
+    color: #fff;
+}
+
+.button-indicator.active {
+    background-color: #ff5722;
+}
+
+/* Joysticks & Triggers */
+.stick {
+    background-color: #222;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.joystick-visual {
+    width: 100px;
+    height: 100px;
+    background-color: #333;
+    border-radius: 50%;
+    position: relative;
+    border: 2px solid #666;
+}
+
+.joystick-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ff5722;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.trigger-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 200px;
+    margin: 15px 0;
+}
+
+.trigger-label {
+    font-weight: bold;
+    width: 30px;
+    text-align: center;
+}
+
+.trigger-bar-container {
+    flex: 1;
+    height: 20px;
+    background-color: #444;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.trigger-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #ff5722;
+    transition: width 0.1s ease;
+}
+
+.trigger-value {
+    width: 40px;
+    text-align: left;
+    font-family: monospace;
+}
+
+.axis-value {
+    font-family: monospace;
+    font-size: 14px;
+}
+
+/* D-Pad */
+.dpad-panel {
+    background-color: #242424;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #333;
+}
+
+.dpad-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.dpad-row {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.dpad-btn {
+    width: 40px;
+    height: 40px;
+    background-color: #333;
+    border: 2px solid #555;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.dpad-btn.active {
+    background-color: #ff5722;
+    box-shadow: 0 0 10px rgba(255, 87, 34, 0.7);
+}
+
+/* Raw Data Console */
+#raw-data-container {
+    padding: 10px;
+    background-color: #1e1e1e;
+    border-radius: 5px;
+    border: 1px solid #444;
+    margin-top: 20px;
+    text-align: left;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    display: none !important;
+}
+
+#raw-data-container.visible {
+    opacity: 1;
+    display: block !important;
+}
+
+#raw-data-display {
+    background-color: #000;
+    color: #0f0;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: monospace;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#raw-data-content {
+    font-size: 12px;
+    white-space: pre-wrap;
+    margin: 0;
+}
