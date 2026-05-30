@@ -1,0 +1,6 @@
+asr_s64.o
+div_nzp_repeat_s64_floor.o
+div_nzp_repeat_u64.o
+div_nzp_repeat_u64_ceiling.o
+div_nde_s32_floor.o
+rt_roundd.o

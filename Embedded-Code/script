@@ -1,0 +1,10 @@
+config load "C:\Users\loq\Documents\MATLAB\baloncuk_rov\baloncuk_rov.ioc"
+project toolchain STM32CubeIDE
+
+SetStructure Advanced
+
+project setCustomFWPath "C:\Users\loq\STM32Cube\Repository\STM32Cube_FW_F4_V1.26.2"
+
+project generate 
+
+exit wait
