@@ -59,39 +59,50 @@ Implemented fail-safes to ensure that when the Electron app is closed, all child
 
 ---
 
-## 🛠️ Local Setup & Development
+# STAROV-1 UI Installation Guide
 
-If you wish to run this interface locally, follow these instructions (tailored for Linux environments like Ubuntu/Debian):
+## 🛠️ Step 1: Prerequisites
 
-**1. Install FFmpeg**
-This application requires FFmpeg to be installed and accessible in your system's PATH to handle the live RTSP video transcoding. 
+Before running the application, your computer needs two pieces of background software to run the code and process the live camera video feed.
 
-Open your terminal and run:
+1. **Install Node.js:**
+   * Go to [nodejs.org](https://nodejs.org/) and download the "LTS" (Long Term Support) version. 
+   * Run the installer and just click "Next" through all the standard options.
+   
+2. **Install FFmpeg (Crucial for the camera stream):**
+   * **Windows:** Open your terminal (Command Prompt) and paste: `winget install ffmpeg`
+   * **Mac:** Open your terminal and paste: `brew install ffmpeg`
+   * **Linux (Ubuntu/Debian):** Open your terminal and paste: `sudo apt install ffmpeg`
+
+---
+
+## 🚀 Step 2: Download and Install the Interface
+
+Once Node.js and FFmpeg are installed, open your terminal (Command Prompt on Windows, Terminal on Mac/Linux) and follow these copy-paste steps.
+
+**1. Download the code to your computer:**
+Paste this command and press **Enter**:
 ```bash
-sudo apt update
-sudo apt install ffmpeg -y
+git clone [https://github.com/geometricus-briareus/STAROV-1.git](https://github.com/geometricus-briareus/STAROV-1.git)
 ```
+**2. Go into the User Interface folder:**
 
-(Note: If you are using Fedora/RHEL, use sudo dnf install ffmpeg. For Arch Linux, use sudo pacman -S ffmpeg.)
-
-You can verify the installation was successful by checking the version:
+Paste this command and press Enter:
 ```bash
-ffmpeg -version
+cd STAROV-1/Station-UI
 ```
+**3. Install the required background packages:**
 
-**2. Install Dependencies**
-
-Make sure you are inside the Ground-Station directory, then install the required Node.js packages:
+Paste this command and press Enter (this might take a minute or two to finish):
 ```bash
 npm install
 ```
 
-**3. Start the Application**
+## 🎮 Step 3: Start the Application
 
-Launch the Electron ground control interface:
+Whenever you want to launch the STAROV-1 interface, just open your terminal, make sure you are inside the Station-UI folder, and run this single command:
 ```bash
 npm start
 ```
 
-(Note: Without an active UDP connection to the physical STM32 board or a local data simulator, sensor values will remain at their default zero-states).
-
+A new window will open automatically displaying the STAROV-1 dashboard, and the local video server will start running in the background to catch the camera feed!
