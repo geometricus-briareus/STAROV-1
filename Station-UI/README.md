@@ -68,6 +68,7 @@ If you wish to run this interface locally:
 npm install
 ```
 **2. Ensure FFmpeg is installed**
+
 This application requires FFmpeg to be installed and accessible in your system's PATH for the video streaming microservice to function.
 
 **3. Start the Application**
