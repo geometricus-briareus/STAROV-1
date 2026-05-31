@@ -4,7 +4,7 @@
 
 **A high-performance, low-latency desktop interface built to pilot and monitor the STAROV-1 underwater vehicle.**
 
-[![Watch the Demo](https://img.shields.io/badge/YouTube-Watch_Live_Demo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](YOUR_UNLISTED_YOUTUBE_LINK_HERE)
+[![Watch the Demo](https://img.shields.io/badge/YouTube-Watch_Live_Demo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/S7FXlory1yk)
 
 ![STAROV-1 Interface Demo](./assets/images/interface-demo.gif)  
 *Real-time interface capturing Gamepad input, IMU telemetry, and MJPEG video streaming.*
@@ -52,7 +52,7 @@ Built a robust polling loop that maps raw X/Y axis data and bitwise-encoded butt
 Dynamic visual rendering of real-time sensor data, including:
 * 6-Axis IMU visualization (Roll, Pitch, Yaw, Acceleration)
 * Depth (Pressure) and Humidity mapping
-* Battery lifecycle tracking
+
 
 ### 🛡️ Process Lifecycle Management
 Implemented fail-safes to ensure that when the Electron app is closed, all child processes (like the Express video server and FFmpeg transcoder) and UDP sockets are gracefully killed and unreferenced to prevent memory leaks or zombie processes.
