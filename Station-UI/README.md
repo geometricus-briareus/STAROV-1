@@ -94,3 +94,4 @@ npm start
 ```
 
 (Note: Without an active UDP connection to the physical STM32 board or a local data simulator, sensor values will remain at their default zero-states).
+
