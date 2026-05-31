@@ -69,24 +69,28 @@ This application requires FFmpeg to be installed and accessible in your system's
 Open your terminal and run:
 ```bash
 sudo apt update
-sudo apt install ffmpeg -y```
+sudo apt install ffmpeg -y
+```
 
 (Note: If you are using Fedora/RHEL, use sudo dnf install ffmpeg. For Arch Linux, use sudo pacman -S ffmpeg.)
 
 You can verify the installation was successful by checking the version:
 ```bash
-ffmpeg -version```
+ffmpeg -version
+```
 
 **2. Install Dependencies**
 
 Make sure you are inside the Ground-Station directory, then install the required Node.js packages:
 ```bash
-npm install```
+npm install
+```
 
 **3. Start the Application**
 
 Launch the Electron ground control interface:
 ```bash
-npm start```
+npm start
+```
 
 (Note: Without an active UDP connection to the physical STM32 board or a local data simulator, sensor values will remain at their default zero-states).
