@@ -83,7 +83,7 @@ Once Node.js and FFmpeg are installed, open your terminal (Command Prompt on Win
 **1. Download the code to your computer:**
 Paste this command and press **Enter**:
 ```bash
-git clone [https://github.com/geometricus-briareus/STAROV-1.git](https://github.com/geometricus-briareus/STAROV-1.git)
+git clone https://github.com/geometricus-briareus/STAROV-1.git
 ```
 **2. Go into the User Interface folder:**
 
