@@ -6,7 +6,7 @@
 
 [![Watch the Demo](https://img.shields.io/badge/YouTube-Watch_Live_Demo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/S7FXlory1yk)
 
-![STAROV-1 Interface Preview](../photo/screen-recording-of-interface.gif)
+![STAROV-1 Interface Preview](../Photos/screen-recording-of-interface.gif)
 *Real-time interface capturing Gamepad input, IMU telemetry, and MJPEG video streaming.*
 
 </div>
