@@ -61,17 +61,32 @@ Implemented fail-safes to ensure that when the Electron app is closed, all child
 
 ## 🛠️ Local Setup & Development
 
-If you wish to run this interface locally:
+If you wish to run this interface locally, follow these instructions (tailored for Linux environments like Ubuntu/Debian):
 
-**1. Install Dependencies**
+**1. Install FFmpeg**
+This application requires FFmpeg to be installed and accessible in your system's PATH to handle the live RTSP video transcoding. 
+
+Open your terminal and run:
 ```bash
-npm install
-```
-**2. Ensure FFmpeg is installed**
+sudo apt update
+sudo apt install ffmpeg -y```
 
-This application requires FFmpeg to be installed and accessible in your system's PATH for the video streaming microservice to function.
+(Note: If you are using Fedora/RHEL, use sudo dnf install ffmpeg. For Arch Linux, use sudo pacman -S ffmpeg.)
+
+You can verify the installation was successful by checking the version:
+```bash
+ffmpeg -version```
+
+**2. Install Dependencies**
+
+Make sure you are inside the Ground-Station directory, then install the required Node.js packages:
+```bash
+npm install```
 
 **3. Start the Application**
+
+Launch the Electron ground control interface:
 ```bash
-npm start
-```
+npm start```
+
+(Note: Without an active UDP connection to the physical STM32 board or a local data simulator, sensor values will remain at their default zero-states).
