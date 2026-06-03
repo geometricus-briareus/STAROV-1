@@ -1,3 +1,12 @@
+/*
+ * STAROV-1
+ * Copyright (c) 2025-2026 Furkan Karstarlı
+ * 
+ * This source code is licensed under the MIT License.
+ * You may not use this file except in compliance with the License.
+ * Please see the LICENSE file in the root directory of this project for full details.
+ */
+
 /**
  * RENDERER.JS
  * Handles the frontend UI logic, Gamepad API interactions, 
